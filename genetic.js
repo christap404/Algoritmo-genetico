@@ -3,7 +3,7 @@ var Genetic = Genetic || (function () {
 
 	'use strict';
 
-	// facilitates communcation between web workers
+
 	var Serialization = {
 		"stringify": function (obj) {
 			return JSON.stringify(obj, function (key, value) {
@@ -11,7 +11,8 @@ var Genetic = Genetic || (function () {
 				if (value instanceof RegExp) return "__regex__:" + value;
 				return value;
 			});
-		}, "parse": function (str) {
+		},
+		"parse": function (str) {
 			return JSON.parse(str, function (key, value) {
 				if (typeof value != "string") return value;
 				if (value.lastIndexOf("__func__:", 0) === 0) return eval('(' + value.slice(9) + ')');
